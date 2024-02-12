@@ -27,7 +27,7 @@ noButton.addEventListener("click", function () {
 });
 
 function handleYesClick() {
-  titleElement.innerHTML = "Yayyy!! :3";
+  titleElement.innerHTML = "Let's video call on the 14th, See you :3 Grrrrrrrr";
   buttonsContainer.classList.add("hidden");
   changeImage("yes");
 }
@@ -47,11 +47,7 @@ function generateMessage(noCount) {
     "Sure na dyud?",
     "Ayaw ba.",
     "Na yayay nako",
-    "mangloud nako oi.",
-    "Sige dyud",
-    "Ouch!!",
-    "Wallopon if mu NO gehapon.",
-    "Ayay!",
+    "mangloud nako oi."
   ];
 
   const messageIndex = Math.min(noCount, messages.length - 1);
@@ -60,6 +56,10 @@ function generateMessage(noCount) {
 
 function changeImage(image) {
   catImg.src = `img/cat-${image}.jpg`;
+}
+
+function updateNoButtonText() {
+  noButton.innerHTML = generateMessage(noCount);
 }
 
 function updateNoButtonText() {
