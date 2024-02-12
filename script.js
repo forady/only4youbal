@@ -9,25 +9,21 @@ const catImg = document.querySelector(".cat-img");
 const MAX_IMAGES = 5;
 
 let play = true;
-let noCount = 0;
+let noCount = 1; // Initialize noCount to 1 instead of 0
 
 yesButton.addEventListener("click", handleYesClick);
 
 noButton.addEventListener("click", function () {
-  noCount++;
-  if (noCount > MAX_IMAGES) {
-    noCount = 1; // Reset the count to loop back to the first image
-  }
   changeImage(noCount);
-  resizeYesButton(); // Enlarge the "Yes" button only when "No" is clicked
+  resizeYesButton();
   updateNoButtonText();
+  noCount++;  // Increment after updating image and button text
 });
 
 function handleYesClick() {
   titleElement.innerHTML = "Let's video call on the 14th, See you :3 Grrrrrrrr";
   buttonsContainer.classList.add("hidden");
   changeImage("yes");
-  // The "resizeYesButton" function is not called here, so the "Yes" button won't enlarge when "Yes" is clicked
 }
 
 function resizeYesButton() {
@@ -55,15 +51,21 @@ function generateMessage(noCount) {
     "YES kana ba!"
   ];
 
-  // Adjust the message index to consider the modulo of the length
-  const messageIndex = noCount % messages.length;
-
-  return messages[messageIndex];
+  const messageIndex = noCount > messages.length ? noCount % messages.length : noCount;
+  return messages[messageIndex - 1];
 }
 
-function changeImage(image) {
-  catImg.src = `img/cat-${image}.jpg`;
+function changeImage(noCount) {
+  if (noCount > MAX_IMAGES) {
+    noCount = 1; // Reset the count to loop back to the first image
+  }
+  catImg.src = `img/cat-${noCount}.jpg`;
 }
+
+function updateNoButtonText() {
+  noButton.innerHTML = generateMessage(noCount);
+}
+
 
 function updateNoButtonText() {
   noButton.innerHTML = generateMessage(noCount);
