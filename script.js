@@ -66,8 +66,3 @@ function updateNoButtonText() {
   noButton.innerHTML = generateMessage(noCount);
 }
 
-
-function updateNoButtonText() {
-  noButton.innerHTML = generateMessage(noCount);
-}
-
