@@ -55,7 +55,9 @@ function generateMessage(noCount) {
     "YES kana ba!"
   ];
 
-  const messageIndex = Math.min(noCount, messages.length - 1);
+  // Adjust the message index to consider the modulo of the length
+  const messageIndex = noCount % messages.length;
+
   return messages[messageIndex];
 }
 
@@ -66,3 +68,4 @@ function changeImage(image) {
 function updateNoButtonText() {
   noButton.innerHTML = generateMessage(noCount);
 }
+
